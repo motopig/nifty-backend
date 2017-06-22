@@ -1,14 +1,10 @@
 <nav id="mainnav-container">
     <div id="mainnav">
 
-        <!--Menu-->
-        <!--================================-->
         <div id="mainnav-menu-wrap">
             <div class="nano">
                 <div class="nano-content">
 
-                    <!--Profile Widget-->
-                    <!--================================-->
                     <div id="mainnav-profile" class="mainnav-profile">
                         <div class="profile-wrap">
                             <div class="pad-btm">
@@ -16,9 +12,9 @@
                                 <img class="img-circle img-sm img-border" src="img/profile-photos/1.png" alt="Profile Picture">
                             </div>
                             <a href="#profile-nav" class="box-block" data-toggle="collapse" aria-expanded="false">
-                                            <span class="pull-right dropdown-toggle">
-                                                <i class="dropdown-caret"></i>
-                                            </span>
+                                <span class="pull-right dropdown-toggle">
+                                    <i class="dropdown-caret"></i>
+                                </span>
                                 <p class="mnp-name">Aaron Chavez</p>
                                 <span class="mnp-desc">aaron.cha@themeon.net</span>
                             </a>
@@ -36,9 +32,6 @@
                         </div>
                     </div>
 
-
-                    <!--Shortcut buttons-->
-                    <!--================================-->
                     <div id="mainnav-shortcut">
                         <ul class="list-unstyled">
                             <li class="col-xs-4" data-content="Shortcut 1">
@@ -58,48 +51,53 @@
                             </li>
                         </ul>
                     </div>
-                    {{--<!--================================-->--}}
-                    {{--<!--End shortcut buttons-->--}}
 
                     <ul id="mainnav-menu" class="list-group">
 
-                        <!--Category name-->
                         <li class="list-header">导航</li>
 
                         @if (webCan('rbac'))
-                        <li>
+                        <li @if (request()->getRequestUri() == '/user' || request()->getRequestUri() == '/role' || request()->getRequestUri() == '/permission') class="active" @endif>
                             <a href="#">
                                 <i class="demo-psi-split-vertical-2"></i>
                                 <span class="menu-title">
-                                                    <strong>权限管理</strong>
-                                                </span>
+                                    <strong>权限管理</strong>
+                                </span>
                                 <i class="arrow"></i>
                             </a>
 
                             <ul class="collapse">
                                 @if (webCan('user/index'))
-                                <li><a href="/users">管理员管理</a></li>
-                                {{--<li class="list-divider"></li>--}}
+                                    <li @if (request()->getRequestUri() == '/user') class="active-link" @endif ><a href="/user">管理员管理</a></li>
                                 @endif
                                 @if (webCan('role/index'))
-                                <li><a href="/role">角色管理</a></li>
-                                {{--<li class="list-divider"></li>--}}
+                                    <li @if (request()->getRequestUri() == '/role') class="active-link" @endif><a href="/role">角色管理</a></li>
                                 @endif
                                 @if (webCan('permission/index'))
-                                <li><a href="/permission">权限管理</a></li>
+                                    <li @if (request()->getRequestUri() == '/permission') class="active-link" @endif><a href="/permission">权限管理</a></li>
                                 @endif
                             </ul>
                         </li>
                         @endif
 
+                        <li>
+                            <a href="#">
+                                <i class="demo-psi-split-vertical-2"></i>
+                                <span class="menu-title">
+                                    <strong>xxx</strong>
+                                </span>
+                                <i class="arrow"></i>
+                            </a>
+
+                            <ul class="collapse">
+                                <li><a href="/aaa">111</a></li>
+                                <li><a href="/bbb">2222</a></li>
+                                <li><a href="/ccc">3333</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <!--================================-->
-        <!--End menu-->
-
     </div>
 </nav>
-<!--===================================================-->
-<!--END MAIN NAVIGATION-->

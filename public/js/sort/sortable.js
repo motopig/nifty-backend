@@ -3,14 +3,14 @@ $(function() {
 
     var placeholder = $('<li class="ui-state-default list-group-item empty"></li>');
 
-    if($("#all_permission >li").length ==0){
-        $("#all_permission").append(placeholder);
+    if($("#all >li").length ==0){
+        $("#all").append(placeholder);
     }
-    if($("#own_permission >li").length ==0){
-        $("#own_permission").append(placeholder);
+    if($("#own >li").length ==0){
+        $("#own").append(placeholder);
     }
 
-    $( "#all_permission, #own_permission" ).sortable({
+    $( "#all, #own" ).sortable({
         connectWith: ".connectedSortable",
         placeholder: "ui-state-highlight",
         remove: function(event, ui) {
@@ -26,16 +26,27 @@ $(function() {
         }
     }).disableSelection();
 
-    $('.save-permission').on('click', function(){
+    $('.saves').on('click', function(){
 
         // 处理li
         ps = Array();
-        $("#own_permission >li").each(function(i,e){
+        stop = 0;
+        $("#own >li").each(function(i,e){
+            if (! e.attributes.hasOwnProperty('pid')) {
+                stop = 1;return false;
+            }
             ps.push(e.attributes.pid.value)
         });
 
+        if (stop) {
+            layer.msg('请选择!!', {
+
+            });
+            return false;
+        }
+
         $.ajax({
-            url: $("#own_permission").attr('url'),
+            url: $("#own").attr('url'),
             async: false,
             type: 'POST',
             dataType: 'json',

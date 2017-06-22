@@ -130,15 +130,17 @@ class RoleController extends Controller
 
     public function updatePermissions($id){
 
-        $old = array_flip(Role::find($id)->perms->pluck('id')->toArray());
+        $role = Role::find($id);
+        $old = array_flip($role->perms->pluck('id')->toArray());
 
         $new = array_flip(request()->get('ps'));
 
         $add = array_diff_key($new,$old);
         $del = array_diff_key($old,$new);
 
-        Role::find($id)->attachPermissions(array_flip($add));
-        Role::find($id)->detachPermissions(array_flip($del));
+        if (count($add)) $role->attachPermissions(array_flip($add));
+        if (count($del)) $role->detachPermissions(array_flip($del));
+
         return response()->json(formatResponse('suc','update_suc'));
     }
 }

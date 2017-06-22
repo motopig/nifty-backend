@@ -51,12 +51,17 @@ Route::group([
         Route::get('/recover/{id}', 'PermissionController@recover')->name('permission/recover');
     });
 
-    // rbac => menu
+    // rbac => user
     Route::group([
         'namespace' => 'Rbac',
-        'prefix'    => 'menu'
+        'prefix'    => 'user'
     ], function () {
-        Route::resource('/','MenuController');
+        Route::get('/','UserController@index')->name('user/index');
+        Route::match(['get', 'post'], '/create', 'UserController@create')->name('user/create');
+        Route::match(['get', 'post'], '/update/{id}', 'UserController@update')->name('user/update');
+        Route::get('/{id}/role', 'UserController@role')->name('user/role');
+        Route::post('/{id}/updateRoles', 'UserController@updateRoles')->name('user/updateRoles');
+        Route::get('/del/{id}', 'UserController@del')->name('user/del');
     });
 
 

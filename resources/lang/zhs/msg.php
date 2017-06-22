@@ -6,4 +6,5 @@ return [
     'update_suc'    =>  '更新成功',
     'update_err'    =>  '更新失败',
     'delete_suc'    =>  '删除成功',
+    'params_err'    =>  '参数有误',
 ];
