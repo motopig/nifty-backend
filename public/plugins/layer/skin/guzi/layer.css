@@ -1,0 +1,11 @@
+
+body .guzi {
+    background-color: #6ab5f1;
+}
+
+body .guzi .layui-layer-content {
+    color: #ffffff;
+}
+body .guzi .layui-layer-dialog {
+    color: #ffffff;
+}

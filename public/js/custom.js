@@ -1,0 +1,5 @@
+
+
+layer.config({
+    skin: 'guzi'
+});
